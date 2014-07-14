@@ -10,17 +10,19 @@ import org.jsoup.select.*;
 
 public class Demo {	
 	private static final String USER_AGENT = "Mozilla/5.0";
-	private static final String OUTPUT_FOLDER = "Files\\";
+	private static final String OUTPUT_FOLDER = "OLL\\";
 	
 	public static void main(String... args) throws Exception {	
 		
  		String url = "";
+		new File(OUTPUT_FOLDER).mkdir();
+		
 		for(int i=1; i<16500; i++) {
 			try {
 				url = "http://www.kutub.info/library/book/" + i;
 				downloadBook(url);
 			}
-			catch(Exception e) {
+			catch(Exception e) {				
 				System.out.println("Not Found: " + url);
 			}			
 		}		
