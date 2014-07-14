@@ -10,7 +10,7 @@ import org.jsoup.select.*;
 
 public class Demo {	
 	private static final String USER_AGENT = "Mozilla/5.0";
-	private static final String OUTPUT_FOLDER = "OLL\\";
+	private static final String OUTPUT_FOLDER = "Files\\";
 	
 	public static void main(String... args) throws Exception {	
 		
