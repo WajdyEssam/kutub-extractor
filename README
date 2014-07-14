@@ -1,0 +1,28 @@
+Quick and dirty code to fetch all books from http://kutub.info
+
+To compile and run this program from command line:
+
+Compile: javac -cp .;libs\* Demo.java
+Run: java .;libs\* Demo > output.txt
+
+the above line redirect all console output to output.txt
+when finishing the scrapping you may find some files not downloaded and this because either the link 
+is not exist on the website, or there was some problems on your connection
+so you can re-download it by calling reDownloadFiles("output.txt")
+and this will re-download all files that is not downloaded when you  run the application first time
+
+books_links.txt contains all books links for direct download by using browser
+
+To Do list:
+------------
+ * design UI for this code
+ * add logging and remove the need of output redirection
+ * add multi threading (something like producer-consumer pattern)
+ * add pause/stop features when downloading
+ * remove libs from code and add Maven support
+
+--------------
+wajdyesasm
+wajdyessam@hotmail.com
+
+feel free to contact me if you have any questions
