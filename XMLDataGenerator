@@ -1,0 +1,75 @@
+package dataLayer;
+
+import interfaces.LocalPathsAccessable;
+import interfaces.Namable;
+
+import java.io.FileNotFoundException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import xmlLayer.DOMWriter;
+
+public class XMLDataGenerator implements LocalPathsAccessable{
+
+/* XMLDataGenerator generate books data from the website this data program can browse it with 'BooksBrowser' windows */
+
+	static BookDetails book ;
+	
+	public static void main(String... mo9) throws FileNotFoundException, ParserConfigurationException, TransformerConfigurationException, TransformerException, TransformerFactoryConfigurationError{
+		System.out.println("Start Generating Please Wait ...");
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = factory.newDocumentBuilder();
+		Document doc = builder.newDocument();
+		
+		Element parentRoot = doc.createElement(Namable.XML_PARENT_ROOT_TAG);
+		doc.appendChild(parentRoot);
+		
+		
+		Element root = doc.createElement(Namable.XML_ROOT_TAG);
+		parentRoot.appendChild(root);
+		
+		
+	
+		
+		for(int i = 0 ; i<=1000 ; i++){
+		book = new BookDetails(i);
+		if(book.getBookName().equals("@")){
+			continue;
+		}
+		
+		Element block = doc.createElement(Namable.XML_BLOCK_TAG);
+		root.appendChild(block);
+		
+		Element bookName = doc.createElement(Namable.XML_BOOK_NAME_TAG);
+		bookName.appendChild(doc.createTextNode(book.getBookName()+""));
+		block.appendChild(bookName);
+		
+		block.setAttribute("id", i+"");
+		
+		Element publusherName = doc.createElement(Namable.XML_PUBLISHER_NAME_TAG);
+		publusherName.appendChild(doc.createTextNode(book.getPublusherName()+""));
+		block.appendChild(publusherName);
+		
+		Element countOfReaders = doc.createElement(Namable.XML_COUNT_OF_READERS);
+		countOfReaders.appendChild(doc.createTextNode(book.getCountOfReaders()+""));
+		block.appendChild(countOfReaders);
+		
+		Element downloadLink = doc.createElement(Namable.XML_DOWNLOAD_LINK_TAG);
+		downloadLink.appendChild(doc.createTextNode(book.getDownloadLink()+""));
+		block.appendChild(downloadLink);
+		
+		System.out.println(root.getLastChild().getTextContent());
+		DOMWriter.createXMLDoc(doc);
+		}
+			    
+	}
+	
+}
